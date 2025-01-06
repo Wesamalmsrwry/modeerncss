@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modeerncss UI CSS Library Demo</title>
+    <link rel="stylesheet" href="modeerncss.css">
+    <style>
+        body {
+            padding: 2rem;
+            background-color: var(--bg-primary);
+            color: var(--text-color);
+            font-family: system-ui, -apple-system, sans-serif;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section {
+            margin-bottom: 2rem;
+        }
+        .button-group {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        .btn {
+            transition: transform 0.2s ease;
+        }
+        .btn:hover {
+            transform: scale(1.05);
+        }
+        .card {
+            animation: fadeIn 0.5s ease;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            100% {
+                opacity: 1;
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Toggle Theme Button -->
+    <button id="toggleThemeBtn" class="btn btn-primary">Toggle Theme</button>
+
+    <div class="container">
+        <h1>Modern UI Components</h1>
+
+        <div class="section">
+            <h2>Buttons</h2>
+            <div class="button-group">
+                <button class="btn btn-primary">Primary</button>
+                <button class="btn btn-secondary">Secondary</button>
+                <button class="btn btn-success">Success</button>
+                <button class="btn btn-danger">Danger</button>
+                <button class="btn btn-warning">Warning</button>
+                <button class="btn btn-info">Info</button>
+            </div>
+            <div class="button-group">
+                <button class="btn btn-primary btn-sm">Small</button>
+                <button class="btn btn-primary">Normal</button>
+                <button class="btn btn-primary btn-lg">Large</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Cards</h2>
+            <div class="card">
+                <h3>Sample Card</h3>
+                <p>This is a sample card component with some content.</p>
+                <button class="btn btn-primary">Action</button>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Form Inputs</h2>
+            <div style="display: flex; gap: 1rem; flex-direction: column; max-width: 300px;">
+                <input type="text" class="input" placeholder="Enter your name">
+                <input type="email" class="input" placeholder="Enter your email">
+                <input type="password" class="input" placeholder="Enter your password">
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>Badges</h2>
+            <div style="display: flex; gap: 0.5rem;">
+                <span class="badge badge-primary">Primary</span>
+                <span class="badge badge-secondary">Secondary</span>
+                <span class="badge badge-success">Success</span>
+                <span class="badge badge-danger">Danger</span>
+                <span class="badge badge-warning">Warning</span>
+                <span class="badge badge-info">Info</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('toggleThemeBtn').addEventListener('click', function() {
+                document.body.classList.toggle('dark-theme');
+            });
+        });
+    </script>
+</body>
+</html>
