@@ -70,27 +70,54 @@ body {
 }
 
 /* Button styles */
+/* Shadcn UI-like modern buttons */
 .btn {
     padding: var(--spacing-sm) var(--spacing-md);
+    border: 1px solid var(--secondary-color);
     border-radius: var(--border-radius-md);
-    border: 1px solid transparent;
+    background-color: var(--bg-primary);
+    color: var(--text-color);
     cursor: pointer;
     font-weight: 500;
-    transition: background-color 0.2s, transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.2s, box-shadow 0.2s, transform 0.2s, border-color 0.2s;
 }
 
 .btn:hover {
-    transform: translateY(-1px) scale(1.03);
+    background-color: var(--bg-secondary);
+    border-color: var(--secondary-hover);
+    transform: translateY(-1px) scale(1.02);
     box-shadow: var(--shadow-sm);
 }
 
-.btn-primary {
-    background-color: var(--primary-color);
-    color: white;
+.btn:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: -2px;
 }
 
+.btn::after {
+    content: "";
+    position: absolute;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.2);
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+.btn:hover::after {
+    opacity: 1;
+}
+
+/* Button variants */
+.btn-primary {
+    border: 1px solid var(--primary-color);
+    background-color: var(--primary-color);
+    color: #fff;
+}
 .btn-primary:hover {
     background-color: var(--primary-hover);
+    border-color: var(--primary-hover);
 }
 
 .btn-secondary {
@@ -282,4 +309,106 @@ body {
     box-shadow: var(--shadow-lg);
     max-width: 500px;
     width: 100%;
+}
+
+/* Progress Bar */
+.progress {
+    position: relative;
+    height: var(--spacing-sm);
+    background-color: var(--bg-secondary);
+    border-radius: var(--border-radius-sm);
+    overflow: hidden;
+    margin-bottom: var(--spacing-md);
+}
+.progress .progress-bar {
+    height: 100%;
+    background-color: var(--primary-color);
+    width: 50%;
+    transition: width 0.4s ease;
+}
+
+/* Accordion */
+.accordion {
+    border: 1px solid var(--secondary-color);
+    border-radius: var(--border-radius-sm);
+    margin-bottom: var(--spacing-sm);
+    overflow: hidden;
+}
+.accordion-header {
+    background-color: var(--bg-secondary);
+    padding: var(--spacing-sm) var(--spacing-md);
+    cursor: pointer;
+    user-select: none;
+}
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 var(--spacing-md);
+}
+.accordion.active .accordion-content {
+    padding: var(--spacing-md) var(--spacing-md);
+    max-height: 8rem; /* Adjust for content */
+}
+
+/* Toast Notification */
+.toast-container {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    z-index: 9999;
+}
+.toast {
+    background-color: var(--bg-secondary);
+    color: var(--text-color);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--border-radius-md);
+    box-shadow: var(--shadow-sm);
+    animation: slideIn 0.5s ease forwards;
+}
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Timeline */
+.timeline {
+    position: relative;
+    padding: var(--spacing-md) var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+    border-left: 2px solid var(--secondary-color);
+}
+.timeline-event {
+    position: relative;
+    margin-bottom: var(--spacing-md);
+    padding-left: var(--spacing-md);
+}
+.timeline-event::before {
+    content: "";
+    position: absolute;
+    left: -0.63rem;
+    width: 1rem;
+    height: 1rem;
+    background-color: var(--primary-color);
+    border-radius: 50%;
+    top: 0.4rem;
+    transform: translateX(-50%);
+}
+.timeline-event .event-title {
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--text-color);
+}
+.timeline-event .event-date {
+    font-size: 0.875rem;
+    color: var(--secondary-color);
 }
